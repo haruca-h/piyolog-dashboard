@@ -14,7 +14,7 @@
     --accent-diaper: #B9832F; --accent-diaper-soft: #F3E8D4; --danger: #B4503C; --danger-soft: #F5E2DD;
     --ring-track: #DEE5DD; --grid-line: #E4E9E3;
     --card-shadow: 0 1px 3px rgba(38,42,38,0.06), 0 1px 1px rgba(38,42,38,0.04);
-    --radius-lg: 20px; --radius-md: 14px; --radius-sm: 9px;
+    --radius-lg: 18px; --radius-md: 14px; --radius-sm: 9px;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
@@ -33,74 +33,91 @@
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text);
     font-family: 'Zen Kaku Gothic New', 'Hiragino Sans', sans-serif; -webkit-font-smoothing: antialiased; }
-  body { min-height: 100vh; padding: 28px 16px 60px; }
+  body { min-height: 100vh; padding: 20px 14px 44px; }
   .wrap { max-width: 480px; margin: 0 auto; }
-  .top { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 22px; }
-  .top .date { font-size: 13px; color: var(--text-muted); }
-  .top .title { font-size: 20px; font-weight: 900; margin: 2px 0 0; }
+  .top { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 14px; }
+  .top .date { font-size: 12px; color: var(--text-muted); }
+  .top .title { font-size: 17px; font-weight: 900; margin: 2px 0 0; }
   .icon-btn { background: var(--surface); border: none; box-shadow: var(--card-shadow); border-radius: 999px;
-    width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; cursor: pointer;
-    font-size: 16px; color: var(--text-muted); flex: none; }
+    width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer;
+    font-size: 14px; color: var(--text-muted); flex: none; }
   .icon-btn:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid var(--accent-feed); outline-offset: 2px; }
-  .hero { background: var(--surface); box-shadow: var(--card-shadow); border-radius: var(--radius-lg);
-    padding: 26px 20px 20px; text-align: center; margin-bottom: 14px; }
-  .ring-wrap { position: relative; width: 190px; height: 190px; margin: 4px auto 6px; }
+
+  .card { background: var(--surface); box-shadow: var(--card-shadow); border-radius: var(--radius-lg); padding: 14px 16px 16px; margin-bottom: 10px; }
+  .card-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 10px; }
+  .card-head .c-title { font-size: 13.5px; font-weight: 700; display: flex; align-items: center; gap: 5px; }
+  .card-head .c-sub { font-size: 12.5px; color: var(--text-muted); font-weight: 500; }
+  .card-head .c-sub strong { color: var(--text); font-weight: 700; }
+
+  /* Milk card: ring left, mini-stats right */
+  .milk-body { display: flex; align-items: center; gap: 14px; }
+  .ring-wrap { position: relative; width: 126px; height: 126px; flex: none; }
   .ring-wrap svg { transform: rotate(-90deg); }
   .ring-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-  .ring-center .big { font-size: 32px; font-weight: 900; line-height: 1.15; font-variant-numeric: tabular-nums; }
-  .ring-center .sub { font-size: 12px; color: var(--text-muted); margin-top: 4px; font-weight: 500; }
-  .mini-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
-  .mini-stat { background: var(--surface-2); border-radius: var(--radius-md); padding: 12px 10px; text-align: left; }
+  .ring-center .big { font-size: 21px; font-weight: 900; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .ring-center .sub { font-size: 10px; color: var(--text-muted); margin-top: 3px; font-weight: 500; }
+
+  .mini-stats { flex: 1; display: flex; flex-direction: column; gap: 7px; min-width: 0; }
+  .mini-stat { background: var(--surface-2); border-radius: var(--radius-md); padding: 8px 11px; text-align: left; }
   .mini-stat.highlight { background: var(--accent-feed-soft); }
   .mini-stat.highlight.overdue { background: var(--danger-soft); }
-  .mini-stat .m-label { font-size: 11.5px; color: var(--text-muted); font-weight: 500; margin-bottom: 3px; }
-  .mini-stat .m-time { font-size: 21px; font-weight: 900; font-variant-numeric: tabular-nums; }
-  .mini-stat .m-sub { font-size: 11.5px; margin-top: 3px; color: var(--text-muted); font-weight: 500; }
+  .mini-stat .m-row { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+  .mini-stat .m-label { font-size: 10.5px; color: var(--text-muted); font-weight: 500; }
+  .mini-stat .m-time { font-size: 16px; font-weight: 900; font-variant-numeric: tabular-nums; }
+  .mini-stat .m-sub { font-size: 10.5px; color: var(--text-muted); font-weight: 500; }
   .mini-stat .m-sub.danger { color: var(--danger); }
-  .avg-row { margin-top: 10px; font-size: 12.5px; color: var(--text); text-align: center; }
+
+  .avg-row { margin-top: 10px; font-size: 12px; color: var(--text); text-align: center; }
   .avg-row strong { font-weight: 700; }
-  .avg-sub { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
-  .trend-row { display: none; margin-top: 12px; align-items: center; justify-content: center; gap: 10px; }
-  .trend-label { font-size: 11px; color: var(--text-muted); text-align: right; line-height: 1.4; }
-  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px; }
-  .stat-card { background: var(--surface); box-shadow: var(--card-shadow); border-radius: var(--radius-md); padding: 14px 10px; text-align: center; }
-  .stat-card .emoji { font-size: 20px; margin-bottom: 6px; }
-  .stat-card .num { font-size: 19px; font-weight: 900; }
-  .stat-card .num small { font-size: 12px; font-weight: 500; color: var(--text-muted); }
-  .stat-card .cap { font-size: 11.5px; color: var(--text-muted); margin-top: 2px; }
-  .sleep-card { background: var(--surface); box-shadow: var(--card-shadow); border-radius: var(--radius-md); padding: 16px 18px; margin-bottom: 14px; }
-  .sleep-card .row1 { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
-  .sleep-card .row1 .lbl { font-size: 13.5px; display: flex; align-items: center; gap: 6px; font-weight: 500; }
-  .sleep-card .row1 .val { font-size: 15px; font-weight: 900; color: var(--accent-sleep); }
-  .bar-track { width: 100%; height: 10px; background: var(--ring-track); border-radius: 999px; overflow: hidden; }
+  .avg-sub { font-size: 10.5px; color: var(--text-muted); margin-top: 2px; }
+  .trend-row { display: none; margin-top: 8px; align-items: center; justify-content: center; gap: 10px; }
+  .trend-label { font-size: 10.5px; color: var(--text-muted); text-align: right; line-height: 1.4; }
+  .state-msg-hero { text-align: center; padding: 24px 10px; color: var(--text-muted); font-size: 13px; }
+
+  /* Sleep card */
+  .sleep-total { font-size: 15px; font-weight: 900; color: var(--accent-sleep); }
+  .sleep-state { font-size: 12px; font-weight: 700; margin-bottom: 9px; }
+  .sleep-state.asleep { color: var(--accent-sleep); }
+  .sleep-state.awake { color: var(--text-muted); }
+  .bar-track { width: 100%; height: 9px; background: var(--ring-track); border-radius: 999px; overflow: hidden; }
   .bar-fill { height: 100%; background: var(--accent-sleep); border-radius: 999px; transition: width 0.5s ease; }
-  .sleep-card .row2 { display: flex; justify-content: space-between; margin-top: 8px; font-size: 12px; color: var(--text-muted); }
-  .sleep-card .row2 .remain strong { color: var(--text); font-weight: 700; }
+  .sleep-row2 { display: flex; justify-content: space-between; margin-top: 7px; font-size: 11.5px; color: var(--text-muted); }
+  .sleep-row2 .remain strong { color: var(--text); font-weight: 700; }
+
+  /* Counts (pee/poop) */
+  .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 10px; }
+  .stat-card { background: var(--surface); box-shadow: var(--card-shadow); border-radius: var(--radius-md); padding: 12px 10px; text-align: center; }
+  .stat-card .emoji { font-size: 18px; margin-bottom: 4px; }
+  .stat-card .num { font-size: 18px; font-weight: 900; }
+  .stat-card .cap { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
   .timeline-toggle { width: 100%; background: var(--surface); box-shadow: var(--card-shadow); border: none; border-radius: var(--radius-md);
-    padding: 13px 16px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; font-size: 13.5px;
+    padding: 12px 15px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; font-size: 13px;
     color: var(--text); font-family: inherit; font-weight: 500; }
   .timeline-toggle .chev { transition: transform 0.25s ease; color: var(--text-muted); }
   .timeline-toggle.open .chev { transform: rotate(180deg); }
-  .timeline-wrap { display: none; background: var(--surface); box-shadow: var(--card-shadow); border-radius: var(--radius-md); margin-top: 8px; padding: 12px 14px 14px; }
+  .timeline-wrap { display: none; background: var(--surface); box-shadow: var(--card-shadow); border-radius: var(--radius-md); margin-top: 8px; padding: 10px 12px 12px; }
   .timeline-wrap.open { display: block; }
-  .legend { display: flex; gap: 14px; font-size: 11px; color: var(--text-muted); margin-bottom: 8px; flex-wrap: wrap; }
+  .legend { display: flex; gap: 12px; font-size: 10.5px; color: var(--text-muted); margin-bottom: 8px; flex-wrap: wrap; }
   .legend span { display: inline-flex; align-items: center; gap: 4px; }
   .legend .sw { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
-  .day-grid-scroll { max-height: 420px; overflow-y: auto; position: relative; border-top: 1px solid var(--grid-line); }
+  .day-grid-scroll { max-height: 380px; overflow-y: auto; position: relative; border-top: 1px solid var(--grid-line); }
   .day-grid { position: relative; }
   .hour-row { position: absolute; left: 0; right: 0; border-top: 1px solid var(--grid-line); }
-  .hour-row .hlabel { position: absolute; left: 0; top: -7px; font-size: 10.5px; color: var(--text-muted); background: var(--surface); padding-right: 4px; }
+  .hour-row .hlabel { position: absolute; left: 0; top: -7px; font-size: 10px; color: var(--text-muted); background: var(--surface); padding-right: 4px; }
   .sleep-block { position: absolute; border-radius: 5px; background: var(--accent-sleep-soft); border-left: 3px solid var(--accent-sleep); }
-  .evt-dot { position: absolute; width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    font-size: 9px; transform: translate(-50%, -50%); }
+  .evt-dot { position: absolute; width: 15px; height: 15px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 8.5px; transform: translate(-50%, -50%); }
   .evt-dot.feed { background: var(--accent-feed-soft); }
   .evt-dot.pee { background: #DCEAF5; }
   .evt-dot.poop { background: var(--accent-diaper-soft); }
   .now-line { position: absolute; left: 40px; right: 0; border-top: 2px solid var(--danger); z-index: 3; }
   .now-line::before { content: ''; position: absolute; left: -4px; top: -4px; width: 8px; height: 8px; border-radius: 50%; background: var(--danger); }
-  .t-empty { padding: 30px 0; text-align: center; color: var(--text-muted); font-size: 13px; }
-  .footer-note { text-align: center; font-size: 11.5px; color: var(--text-muted); margin-top: 16px; }
-  .refresh-btn { background: none; border: none; color: var(--text-muted); font-size: 11.5px; text-decoration: underline; cursor: pointer; padding: 0; font-family: inherit; }
+  .t-empty { padding: 26px 0; text-align: center; color: var(--text-muted); font-size: 12.5px; }
+
+  .footer-note { text-align: center; font-size: 11px; color: var(--text-muted); margin-top: 12px; }
+  .refresh-btn { background: none; border: none; color: var(--text-muted); font-size: 11px; text-decoration: underline; cursor: pointer; padding: 0; font-family: inherit; }
+
   .overlay { position: fixed; inset: 0; background: rgba(20, 22, 20, 0.42); display: none; align-items: flex-end; justify-content: center; z-index: 20; }
   .overlay.open { display: flex; }
   .panel { background: var(--surface); width: 100%; max-width: 480px; border-radius: 22px 22px 0 0; padding: 22px 20px 26px; }
@@ -133,48 +150,64 @@
   <div id="stateArea"></div>
   <div id="dashboard" style="display:none;">
 
-    <div class="hero" id="heroCard">
-      <div class="ring-wrap">
-        <svg width="190" height="190" viewBox="0 0 190 190">
-          <circle cx="95" cy="95" r="83" fill="none" stroke="var(--ring-track)" stroke-width="13"/>
-          <circle id="ringProgress" cx="95" cy="95" r="83" fill="none" stroke="var(--accent-feed)"
-                  stroke-width="13" stroke-linecap="round" stroke-dasharray="521.5" stroke-dashoffset="521.5"
-                  style="transition: stroke-dashoffset 0.6s ease, stroke 0.3s ease;"/>
-        </svg>
-        <div class="ring-center">
-          <div class="big" id="ringBig">—</div>
-          <div class="sub" id="ringSub">データ待ち</div>
-        </div>
+    <!-- 1: 今日のミルク -->
+    <div class="card" id="milkCard">
+      <div class="card-head">
+        <div class="c-title">🍼 今日のミルク</div>
+        <div class="c-sub" id="feedTodayLine">—</div>
       </div>
-
-      <div class="mini-stats" id="miniStats" style="display:none;">
-        <div class="mini-stat">
-          <div class="m-label">前回</div>
-          <div class="m-time" id="lastTime">—</div>
-          <div class="m-sub" id="lastElapsed">—</div>
+      <div id="milkBody">
+        <div class="milk-body">
+          <div class="ring-wrap">
+            <svg width="126" height="126" viewBox="0 0 126 126">
+              <circle cx="63" cy="63" r="54" fill="none" stroke="var(--ring-track)" stroke-width="11"/>
+              <circle id="ringProgress" cx="63" cy="63" r="54" fill="none" stroke="var(--accent-feed)"
+                      stroke-width="11" stroke-linecap="round" stroke-dasharray="339.3" stroke-dashoffset="339.3"
+                      style="transition: stroke-dashoffset 0.6s ease, stroke 0.3s ease;"/>
+            </svg>
+            <div class="ring-center">
+              <div class="big" id="ringBig">—</div>
+              <div class="sub" id="ringSub">データ待ち</div>
+            </div>
+          </div>
+          <div class="mini-stats" id="miniStats" style="display:none;">
+            <div class="mini-stat">
+              <div class="m-row"><span class="m-label">前回</span><span class="m-time" id="lastTime">—</span></div>
+              <div class="m-sub" id="lastElapsed">—</div>
+            </div>
+            <div class="mini-stat highlight" id="nextStat">
+              <div class="m-row"><span class="m-label" id="nextLabel">次回の目安</span><span class="m-time" id="nextTime">—</span></div>
+              <div class="m-sub" id="nextSub">—</div>
+            </div>
+          </div>
         </div>
-        <div class="mini-stat highlight" id="nextStat">
-          <div class="m-label" id="nextLabel">次回の目安</div>
-          <div class="m-time" id="nextTime">—</div>
-          <div class="m-sub" id="nextSub">—</div>
+        <div class="avg-row" id="avgRow" style="display:none;">
+          <div id="avgMain">—</div>
+          <div class="avg-sub" id="avgSub">—</div>
         </div>
-      </div>
-      <div class="avg-row" id="avgRow" style="display:none;">
-        <div id="avgMain">—</div>
-        <div class="avg-sub" id="avgSub">—</div>
-      </div>
-      <div class="trend-row" id="trendRow">
-        <svg id="trendSpark" width="120" height="30" viewBox="0 0 120 30"></svg>
-        <div class="trend-label" id="trendDelta">—</div>
+        <div class="trend-row" id="trendRow">
+          <svg id="trendSpark" width="110" height="28" viewBox="0 0 110 28"></svg>
+          <div class="trend-label" id="trendDelta">—</div>
+        </div>
       </div>
     </div>
 
-    <div class="stats">
-      <div class="stat-card">
-        <div class="emoji">🍼</div>
-        <div class="num" id="feedNum">—</div>
-        <div class="cap">ミルク（今日）</div>
+    <!-- 2: 今日の睡眠 -->
+    <div class="card" id="sleepCard">
+      <div class="card-head">
+        <div class="c-title">🌙 今日の睡眠</div>
+        <div class="c-sub sleep-total" id="sleepVal">—</div>
       </div>
+      <div class="sleep-state" id="sleepStateLine">—</div>
+      <div class="bar-track"><div class="bar-fill" id="sleepBar" style="width:0%;"></div></div>
+      <div class="sleep-row2">
+        <span>目標 <span id="sleepTargetLabel">14</span>時間</span>
+        <span class="remain" id="sleepRemain">—</span>
+      </div>
+    </div>
+
+    <!-- 3: 今日の回数（おしっこ・うんち） -->
+    <div class="stats">
       <div class="stat-card">
         <div class="emoji">💧</div>
         <div class="num" id="peeNum">—</div>
@@ -187,18 +220,7 @@
       </div>
     </div>
 
-    <div class="sleep-card">
-      <div class="row1">
-        <div class="lbl">🌙 今日の睡眠</div>
-        <div class="val" id="sleepVal">—</div>
-      </div>
-      <div class="bar-track"><div class="bar-fill" id="sleepBar" style="width:0%;"></div></div>
-      <div class="row2">
-        <span>目標 <span id="sleepTargetLabel">14</span>時間</span>
-        <span class="remain" id="sleepRemain">—</span>
-      </div>
-    </div>
-
+    <!-- 4: タイムライン -->
     <button class="timeline-toggle" id="timelineToggle">
       <span>今日のタイムラインを見る</span>
       <span class="chev">▾</span>
@@ -248,7 +270,7 @@
   var TARGET_KEY = 'piyolog_dashboard_sleep_target_h';
   var LOG_KEY = 'piyolog_dashboard_interval_log';
   var REFRESH_MS = 90 * 1000;
-  var RING_CIRC = 2 * Math.PI * 83;
+  var RING_CIRC = 2 * Math.PI * 54;
   var ROW_H = 36;
   var DAY_MIN = 1440;
   var GRID_H = 24 * ROW_H;
@@ -256,10 +278,10 @@
   var DAY_END_HOUR = 21;
 
   var els = {};
-  ['stateArea','dashboard','todayLabel','heroCard','ringProgress','ringBig','ringSub',
+  ['stateArea','dashboard','todayLabel','ringProgress','ringBig','ringSub','feedTodayLine',
    'miniStats','lastTime','lastElapsed','nextStat','nextLabel','nextTime','nextSub',
    'avgRow','avgMain','avgSub','trendRow','trendSpark','trendDelta',
-   'feedNum','peeNum','poopNum','sleepVal','sleepBar','sleepTargetLabel','sleepRemain',
+   'peeNum','poopNum','sleepVal','sleepStateLine','sleepBar','sleepTargetLabel','sleepRemain',
    'timelineToggle','timelineWrap','dayGridScroll','dayGrid','lastUpdated','refreshBtn',
    'settingsBtn','overlay','panelErr','feedUrlInput','sleepTargetInput','panelSave',
    'panelCancel','panelTitle','panelDesc'
@@ -402,12 +424,18 @@
       if (e > s) sleepMsToday += (e - s);
     });
 
+    var lastSleepWakeEvent = sleepEvents.length ? sleepEvents[sleepEvents.length - 1] : null;
+    var currentlyAsleep = lastSleepWakeEvent ? lastSleepWakeEvent.type === 'Sleep' : false;
+    var sinceEventTime = lastSleepWakeEvent ? new Date(lastSleepWakeEvent.datetime) : null;
+    var sinceEventMin = sinceEventTime ? (now - sinceEventTime) / 60000 : null;
+
     return {
       lastFeedTime: lastFeedTime, nextFeedTime: nextFeedTime, minutesUntilNext: minutesUntilNext, overdue: overdue,
       chosenAvg: chosenAvg, isDayNow: isDayNow, ivStats: ivStats,
       feedCountToday: feedCountToday, feedMlToday: feedMlToday,
       peeCountToday: peeCountToday, poopCountToday: poopCountToday,
       sleepMsToday: sleepMsToday, ongoingSleep: ongoingSleep, targetMs: targetHours * 3600000,
+      currentlyAsleep: currentlyAsleep, sinceEventMin: sinceEventMin, hasSleepData: !!lastSleepWakeEvent,
       dayBounds: bounds, sleepIntervals: intervals,
       dayFormula: formulaToday,
       dayPee: records.filter(function (r) { return r.type === 'Pee'; }).filter(inToday),
@@ -459,7 +487,7 @@
     var vals = pts.map(function (p) { return p.day; });
     var min = Math.min.apply(null, vals), max = Math.max.apply(null, vals);
     if (min === max) { min -= 15; max += 15; }
-    var w = 120, h = 30, pad = 4;
+    var w = 110, h = 28, pad = 4;
     var stepX = pts.length > 1 ? (w - 2 * pad) / (pts.length - 1) : 0;
     var coords = pts.map(function (p, i) {
       var x = pad + i * stepX;
@@ -481,8 +509,10 @@
     els.dashboard.style.display = '';
     els.todayLabel.textContent = fmtToday();
 
+    els.feedTodayLine.innerHTML = '<strong>' + stats.feedCountToday + '回</strong>' + (stats.feedMlToday > 0 ? '・' + stats.feedMlToday + 'ml' : '');
+
     if (!stats.lastFeedTime) {
-      els.ringBig.textContent = '記録なし'; els.ringSub.textContent = '直近のミルク記録がありません';
+      els.ringBig.textContent = '記録なし'; els.ringSub.textContent = '直近のミルク記録なし';
       els.ringProgress.setAttribute('stroke-dashoffset', RING_CIRC); els.ringProgress.style.stroke = 'var(--accent-feed)';
       els.miniStats.style.display = 'none'; els.avgRow.style.display = 'none'; els.trendRow.style.display = 'none';
     } else if (!stats.chosenAvg) {
@@ -513,14 +543,23 @@
       renderTrend();
     }
 
-    els.feedNum.innerHTML = stats.feedCountToday + '回' + (stats.feedMlToday > 0 ? '<br><small>' + stats.feedMlToday + 'ml</small>' : '');
     els.peeNum.textContent = stats.peeCountToday + '回';
     els.poopNum.textContent = stats.poopCountToday + '回';
 
     var sleepHours = stats.sleepMsToday / 3600000, targetHours = stats.targetMs / 3600000;
     els.sleepTargetLabel.textContent = targetHours;
     var hDisp = Math.floor(sleepHours), mDisp = Math.round((sleepHours - hDisp) * 60);
-    els.sleepVal.textContent = hDisp + '時間' + mDisp + '分' + (stats.ongoingSleep ? '（ねんね中）' : '');
+    els.sleepVal.textContent = hDisp + '時間' + mDisp + '分';
+    if (!stats.hasSleepData) {
+      els.sleepStateLine.textContent = '記録なし';
+      els.sleepStateLine.className = 'sleep-state awake';
+    } else if (stats.currentlyAsleep) {
+      els.sleepStateLine.textContent = '😴 寝てから ' + fmtHM(stats.sinceEventMin) + ' 経過';
+      els.sleepStateLine.className = 'sleep-state asleep';
+    } else {
+      els.sleepStateLine.textContent = '起きてから ' + fmtHM(stats.sinceEventMin) + ' 経過';
+      els.sleepStateLine.className = 'sleep-state awake';
+    }
     els.sleepBar.style.width = Math.min(100, Math.max(0, (stats.sleepMsToday / stats.targetMs) * 100)) + '%';
     var remainMs = stats.targetMs - stats.sleepMsToday;
     els.sleepRemain.innerHTML = remainMs <= 0 ? '<strong>目標達成 ◎</strong>' : 'あと <strong>' + fmtHM(remainMs / 60000) + '</strong>';
